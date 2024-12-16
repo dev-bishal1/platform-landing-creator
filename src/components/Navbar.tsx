@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
+import { SidebarTrigger } from "./ui/sidebar";
 
 const Navbar = () => {
   return (
@@ -18,9 +19,9 @@ const Navbar = () => {
           </div>
           
           <div className="md:hidden">
-            <Button variant="ghost" size="icon">
+            <SidebarTrigger>
               <Menu className="h-6 w-6" />
-            </Button>
+            </SidebarTrigger>
           </div>
         </div>
       </div>
