@@ -1,14 +1,5 @@
 import { Home, Settings, Users, BarChart2, Server } from "lucide-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { useSidebar } from "@/contexts/SidebarContext";
 
 const menuItems = [
   { title: "Dashboard", icon: Home, url: "#" },
@@ -19,27 +10,31 @@ const menuItems = [
 ];
 
 export function AppSidebar() {
+  const { isOpen } = useSidebar();
+
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Platform</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url} className="flex items-center gap-2">
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+    <aside
+      className={`fixed top-0 left-0 z-40 h-screen transition-transform duration-300 ease-in-out ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } md:translate-x-0 w-64 bg-white border-r border-gray-200 pt-16`}
+    >
+      <div className="h-full px-3 py-4 overflow-y-auto">
+        <div className="space-y-2">
+          <h2 className="px-4 text-sm font-semibold text-gray-500">Platform</h2>
+          <nav className="space-y-1">
+            {menuItems.map((item) => (
+              <a
+                key={item.title}
+                href={item.url}
+                className="flex items-center px-4 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 group"
+              >
+                <item.icon className="w-4 h-4 mr-3 text-gray-500 group-hover:text-gray-900" />
+                {item.title}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </aside>
   );
 }

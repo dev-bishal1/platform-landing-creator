@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Footer from "@/components/Footer";
 import { AppSidebar } from "@/components/AppSidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/contexts/SidebarContext";
 
 const Index = () => {
   return (
@@ -12,11 +12,11 @@ const Index = () => {
         <AppSidebar />
         <div className="flex-1">
           <Navbar />
-          <main>
+          <main className="md:ml-64">
             <Hero />
             <Features />
           </main>
-          <Footer />
+          <Footer className="md:ml-64" />
         </div>
       </div>
     </SidebarProvider>

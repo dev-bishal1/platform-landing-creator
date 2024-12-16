@@ -1,8 +1,9 @@
-import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
-import { SidebarTrigger } from "./ui/sidebar";
+import { useSidebar } from "@/contexts/SidebarContext";
 
 const Navbar = () => {
+  const { toggle } = useSidebar();
+
   return (
     <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,13 +16,18 @@ const Navbar = () => {
             <a href="#features" className="text-gray-600 hover:text-primary transition-colors">Features</a>
             <a href="#solutions" className="text-gray-600 hover:text-primary transition-colors">Solutions</a>
             <a href="#contact" className="text-gray-600 hover:text-primary transition-colors">Contact</a>
-            <Button variant="default">Get Started</Button>
+            <button className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors">
+              Get Started
+            </button>
           </div>
           
           <div className="md:hidden">
-            <SidebarTrigger>
+            <button
+              onClick={toggle}
+              className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            >
               <Menu className="h-6 w-6" />
-            </SidebarTrigger>
+            </button>
           </div>
         </div>
       </div>
